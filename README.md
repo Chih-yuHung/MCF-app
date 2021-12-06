@@ -1,4 +1,6 @@
 # MCF-app
+https://cyhung.shinyapps.io/MCFcalculator/
+
 This app provide online tool to calculate methane conversion factor(MCF) with air/manure temperature input. Developed by Chih-Yu Hung in the research team including Andrew VanderZaag, Ward Smith, and Brian Grant at Agricutlure, Agri-Food, Canada.
 
 The calculation is based on 2019 IPCC Refinement, but a slight revision, i.e. only one-time maure removal in Aug-December would cause damping effect. 
