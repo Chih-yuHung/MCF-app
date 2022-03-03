@@ -11,3 +11,6 @@ There are minor bugs need to fix.
 2. Letters other than "y" and "n" are treated as "n" without warning. 
 
 Next version will fix the bugs and develop a Canada map so user can select a place in Canada to know the MCF value.
+
+v.1.2 20220302
+1.correct the error of potential CH4 calculation. 
