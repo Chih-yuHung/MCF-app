@@ -119,7 +119,7 @@ shinyServer(function(input, output, session) {
           VS_con$value[i]<-VS_ava$value[i]*f.m$value[i]
         }
     temp$value[i]<-VS_con$value[i]*B0
-    CH4.p$value<-sum(VS_loaded)*B0
+    CH4.p$value<-sum(VS_loaded[25:36])*B0
     CH4_sel$value<-round(sum(temp$value[25:36]),3)
     MCF$value<-round(CH4_sel$value/CH4.p$value,3)
     }
