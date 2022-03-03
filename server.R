@@ -119,7 +119,7 @@ shinyServer(function(input, output, session) {
           VS_con$value[i]<-VS_ava$value[i]*f.m$value[i]
         }
     temp$value[i]<-VS_con$value[i]*B0
-    CH4.p$value<-VS_Yr*B0
+    CH4.p$value<-sum(VS_loaded)*B0
     CH4_sel$value<-round(sum(temp$value[25:36]),3)
     MCF$value<-round(CH4_sel$value/CH4.p$value,3)
     }
@@ -136,30 +136,44 @@ shinyServer(function(input, output, session) {
         if(input$check_air) {
       par(mar=c(5,5,2,1))
       plot(1:12,temp.month(),type="b",cex.lab=1.5,las=1,cex.axis=1.5
-           ,xlab="Month",ylab=expression(paste("Temperature (",degree,"C)")),lty=2)
-      text(1,max(temp.month())*0.70,"Air temperature not provided",pos=4)
-      legend(1,max(temp.month())*0.95,"Manure temperature",bty="n",lty=1)
-      text(10,max(temp.month())*0.9,paste("MCF=",round(MCF$value,2)),pos=4)
-      text(10,max(temp.month())*0.8,paste0("Potential CH4=",potentialCH4),pos=4)
-      text(10,max(temp.month())*0.7,paste0("Produced CH4=",producedCH4),pos=4)    }
-    else{
+           ,ylim=c(min(temp.month())-5,max(temp.month())*1.2)
+           ,xlab="Month",ylab=expression(paste("Temperature (",degree,"C)")),lty=1)
+      legend(1,max(temp.month())*1.2,"Manure temperature",bty="n",lty=1)
+      text(c(1,1),c(max(temp.month())*0.95,max(temp.month()*0.80))
+           ,c("Air temperature not provided","* indicates manure removal"),pos=4)
+      text(10,max(temp.month())*1.1,paste("MCF=",round(MCF$value,2)),pos=4)
+      text(10,max(temp.month()),paste0("Potential CH4=",potentialCH4),pos=4)
+      text(10,max(temp.month())*0.9,paste0("Produced CH4=",producedCH4),pos=4)  
+      for (i in 1:12){
+      if(Month.rm()[i] > 0) {
+      text(i,temp.month()[i]+1.5,"*",cex=2)
+        } }
+      }else{
       par(mar=c(5,5,2,1))
       plot(1:12,temp.air(),type="b",cex.lab=1.5,las=1,cex.axis=1.5
+           ,ylim=c(min(temp.air())-5,max(temp.air())*1.2)
            ,xlab="Month",ylab=expression(paste("Temperature (",degree,"C)")),lty=2)
       lines(1:12,temp.month(),lty=1)
-      legend(1,max(temp.air())*0.95,c("Manure temperature","Air temperature")
+      legend(1,max(temp.air())*1.2,c("Manure temperature","Air temperature")
              ,bty="n",lty=c(1,2))
-      text(10,max(temp.air())*0.9,paste("MCF=",round(MCF$value,2)),pos=4)
-      text(10,max(temp.air())*0.8,paste0("Potential CH4=",potentialCH4),pos=4)
-      text(10,max(temp.air())*0.7,paste0("Produced CH4=",producedCH4),pos=4)
+      text(1,max(temp.air()*0.80),"* indicates manure removal",pos=4)
+      text(10,max(temp.air())*1.1,paste("MCF=",round(MCF$value,2)),pos=4)
+      text(10,max(temp.air())*1,paste0("Potential CH4=",potentialCH4),pos=4)
+      text(10,max(temp.air())*0.9,paste0("Produced CH4=",producedCH4),pos=4)
+      for (i in 1:12){
+        if(Month.rm()[i] > 0) {
+          text(i,temp.month()[i]+1,"*",cex=2)
+        } }
     }
   })
   
   output$VSCH4<-renderTable({
      req(input$plot1)
-     Vstable<-data.frame(rep(1:3,each=12),rep(1:12,3),VS_ava$value,VS_con$value,temp$value)
+     #if(input$check_air){
+     Vstable<-data.frame(rep(3L,each=12),1:12,VS_ava$value[25:36],VS_con$value[25:36],temp$value[25:36])
      colnames(Vstable)<-c("Year","Month","VS available (kg)","VS consumed (kg)","CH4 (m3)")
      Vstable
+     #}else {} 
   })
   
 })

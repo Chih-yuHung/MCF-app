@@ -12,7 +12,7 @@ shinyUI(fluidPage(
     fluidRow(
       column(width=3,
         checkboxInput("check_air","Input manure temperature (air temperature is input by default",FALSE,width=200),
-        rHandsontableOutput("temp_datatable1",width=400),
+        rHandsontableOutput("temp_datatable1",width=200),
         rHandsontableOutput("parameter_datatable",width=200),
         bsTooltip("parameter_datatable",
                 "VS is the volatile solid excretion;\\
@@ -23,6 +23,7 @@ shinyUI(fluidPage(
                 emptying is the emptying efficiency"
                 ,placement="top"),
         actionButton("plot1","Plot")),
+        #checkboxInput("check_VS","show detail",FALSE,width=100),
         #Show plot
         column(width=9,
         plotOutput("plot.temp"),
