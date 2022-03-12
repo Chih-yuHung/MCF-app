@@ -6,7 +6,7 @@ library(weathermetrics);library(shinyalert);library(shinyBS)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Methane Coversion Factor (MCF) Calculator"),
+    titlePanel("Methane Conversion Factor (MCF) Calculator"),
 
     # Sidebar
     fluidRow(

@@ -1,0 +1,13 @@
+name: MCF-app
+title: MCF-app
+username:
+account: cyhung
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5769169
+bundleId: 5635573
+url: https://cyhung.shinyapps.io/MCF-app/
+when: 1646275005.87304
+lastSyncTime: 1646275005.87304
+asMultiple: FALSE
+asStatic: FALSE

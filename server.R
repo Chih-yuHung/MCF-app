@@ -158,8 +158,8 @@ shinyServer(function(input, output, session) {
              ,bty="n",lty=c(1,2))
       text(1,max(temp.air()*0.80),"* indicates manure removal",pos=4)
       text(10,max(temp.air())*1.1,paste("MCF=",round(MCF$value,2)),pos=4)
-      text(10,max(temp.air())*1,paste0("Potential CH4=",potentialCH4),pos=4)
-      text(10,max(temp.air())*0.9,paste0("Produced CH4=",producedCH4),pos=4)
+      text(10,max(temp.air())*1,paste0("Potential CH4 = ",potentialCH4),pos=4)
+      text(10,max(temp.air())*0.9,paste0("Produced CH4 = ",producedCH4),pos=4)
       for (i in 1:12){
         if(Month.rm()[i] > 0) {
           text(i,temp.month()[i]+1,"*",cex=2)
